@@ -53,5 +53,17 @@ contact: "Non renseigné"
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id") || "1";
 const p = patients[id];
-c
+const profile = document.getElementById("profile");
+
+if (p) {
+profile.innerHTML = `     <div class="item"><span class="label">👤 Nom du patient</span>${p.name}</div>     <div class="item"><span class="label">🩸 Groupe sanguin</span>${p.blood}</div>     <div class="item"><span class="label">⚠️ Allergies</span>${p.allergies}</div>     <div class="item"><span class="label">💊 Informations médicales</span>${p.info}</div>     <div class="item"><span class="label">📞 Contact d'urgence</span>${p.contact}</div>
+  `;
+} else {
+profile.textContent = "Profil introuvable. Vérifiez le QR code.";
+} </script>
+
+</body>
+</html>
+
+
 ```
