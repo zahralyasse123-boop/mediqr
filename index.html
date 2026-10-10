@@ -99,6 +99,44 @@ footer{background:#0c2b43;color:#d5e2eb;padding:28px 6%;text-align:center;font-s
     <p>Pour cette démonstration, aucun paiement ni aucune inscription réelle ne sont disponibles.</p>
   </div>
 </section>
+<section id="demo-qr" style="background:#f3f8fc;padding:50px 6%;text-align:center;">
+  <div class="section-head">
+    <h2>Démonstration : scannez un QR Code</h2>
+    <p>Scannez un code pour découvrir un profil fictif.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:900px;margin:auto;">
+
+```
+<article style="background:white;padding:24px;border-radius:18px;border:1px solid #dce7ef;">
+  <h3>Sara</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fzahralyasse123-boop.github.io%2Fmediqr%2Fpatient.html%3Fid%3D1" alt="QR Code Sara" width="180" height="180">
+  <p>Profil fictif de Sara</p>
+  <a href="patient.html?id=1" class="btn">Voir le profil</a>
+</article>
+
+<article style="background:white;padding:24px;border-radius:18px;border:1px solid #dce7ef;">
+  <h3>Adam</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fzahralyasse123-boop.github.io%2Fmediqr%2Fpatient.html%3Fid%3D2" alt="QR Code Adam" width="180" height="180">
+  <p>Profil fictif d'Adam</p>
+  <a href="patient.html?id=2" class="btn">Voir le profil</a>
+</article>
+
+<article style="background:white;padding:24px;border-radius:18px;border:1px solid #dce7ef;">
+  <h3>Lina</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fzahralyasse123-boop.github.io%2Fmediqr%2Fpatient.html%3Fid%3D3" alt="QR Code Lina" width="180" height="180">
+  <p>Profil fictif de Lina</p>
+  <a href="patient.html?id=3" class="btn">Voir le profil</a>
+</article>
+```
+
+  </div>
+
+  <p style="margin-top:25px;color:#607487;font-size:14px;">
+    Prototype scolaire uniquement : toutes les données sont fictives.
+  </p>
+</section>
+
 </main>
 <footer>
   <p><strong>MediQR</strong> — Vos informations médicales, accessibles en un scan.</p>
