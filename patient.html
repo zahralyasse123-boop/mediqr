@@ -1,69 +1,289 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"<
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fiche médicale - MediQR</title>
+
 <style>
-body{font-family:Arial,sans-serif;background:#f0f7f7;margin:0;padding:20px;color:#243746}
-.card{max-width:500px;margin:30px auto;background:white;padding:25px;border-radius:18px;box-shadow:0 4px 18px #00000012}
-h1{text-align:center;color:#087f8c}
-.subtitle{text-align:center;color:#667788}
-.item{padding:13px 0;border-bottom:1px solid #e5eeee}
-.label{font-weight:bold;display:block;margin-bottom:5px}
-.notice{background:#fff4d6;padding:12px;border-radius:10px;font-size:13px;margin-top:20px}
-footer{text-align:center;margin-top:20px;color:#667788;font-size:12px}
-a{color:#087f8c}
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f7f7;
+  margin: 0;
+  padding: 20px;
+  color: #243746;
+}
+
+.card {
+  max-width: 500px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #00000012;
+}
+
+h1 {
+  text-align: center;
+  color: #087f8c;
+}
+
+.subtitle {
+  text-align: center;
+  color: #667788;
+}
+
+.item {
+  padding: 13px 0;
+  border-bottom: 1px solid #e5eeee;
+}
+
+.label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.notice {
+  background: #fff4d6;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.vip {
+  background: #f0e8ff;
+  color: #6332a0;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #c62828;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+#status {
+  font-size: 14px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #667788;
+  font-size: 12px;
+}
+
+a {
+  color: #087f8c;
+}
 </style>
 </head>
+
 <body>
+
 <main class="card">
+
 <h1>💚 MediQR</h1>
 <p class="subtitle">Fiche médicale de démonstration</p>
+
 <div id="profile"></div>
-<div class="notice"><strong>Important :</strong> projet scolaire avec des données fictives. Cette fiche ne doit pas être utilisée en situation d'urgence.</div>
+<div id="subscription"></div>
+<div id="alertArea"></div>
+<p id="status" role="status"></p>
+
+<div class="notice">
+<strong>Important :</strong> projet scolaire avec des données fictives.
+Cette fiche ne doit pas être utilisée en situation d'urgence réelle.
+</div>
+
 <p><a href="./index.html">← Retour au site MediQR</a></p>
+
 <footer>MediQR — Prototype scolaire</footer>
+
 </main>
+
 <script>
 const patients = {
-"1": {
-name: "Sara Exemple",
-blood: "Non renseigné",
-allergies: "Non renseignées",
-info: "Aucune donnée médicale réelle.",
-contact: "Non renseigné"
-},
-"2": {
-name: "Adam Démo",
-blood: "O+ (exemple fictif)",
-allergies: "Exemple fictif : arachides",
-info: "Exemple scolaire uniquement.",
-contact: "Non renseigné"
-},
-"3": {
-name: "Lina Test",
-blood: "A+ (exemple fictif)",
-allergies: "Exemple fictif : pollen",
-info: "Exemple scolaire uniquement.",
-contact: "Non renseigné"
-}
+  "1": {
+    name: "Sara Exemple",
+    blood: "Non renseigné",
+    allergies: "Non renseignées",
+    info: "Aucune donnée médicale réelle.",
+    contact: "Contact fictif",
+    plan: "VVIP"
+  },
+
+  "2": {
+    name: "Adam Démo",
+    blood: "O+ (exemple fictif)",
+    allergies: "Exemple fictif : arachides",
+    info: "Exemple scolaire uniquement.",
+    contact: "Non renseigné",
+    plan: "NORMAL"
+  },
+
+  "3": {
+    name: "Lina Test",
+    blood: "A+ (exemple fictif)",
+    allergies: "Exemple fictif : pollen",
+    info: "Exemple scolaire uniquement.",
+    contact: "Non renseigné",
+    plan: "VIP"
+  }
 };
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id") || "1";
 const p = patients[id];
+
 const profile = document.getElementById("profile");
+const subscription = document.getElementById("subscription");
+const alertArea = document.getElementById("alertArea");
+const status = document.getElementById("status");
 
 if (p) {
-profile.innerHTML = `     <div class="item"><span class="label">👤 Nom du patient</span>${p.name}</div>     <div class="item"><span class="label">🩸 Groupe sanguin</span>${p.blood}</div>     <div class="item"><span class="label">⚠️ Allergies</span>${p.allergies}</div>     <div class="item"><span class="label">💊 Informations médicales</span>${p.info}</div>     <div class="item"><span class="label">📞 Contact d'urgence</span>${p.contact}</div>
+  profile.innerHTML = `
+    <div class="item">
+      <span class="label">👤 Nom du patient</span>
+      ${p.name}
+    </div>
+
+    <div class="item">
+      <span class="label">🩸 Groupe sanguin</span>
+      ${p.blood}
+    </div>
+
+    <div class="item">
+      <span class="label">⚠️ Allergies</span>
+      ${p.allergies}
+    </div>
+
+    <div class="item">
+      <span class="label">💊 Informations médicales</span>
+      ${p.info}
+    </div>
+
+    <div class="item">
+      <span class="label">📞 Contact d'urgence</span>
+      ${p.contact}
+    </div>
   `;
+
+  subscription.innerHTML = `
+    <div class="vip">
+      Abonnement : ${p.plan}
+      ${p.plan === "VVIP" ? " — 299 DH/an" : ""}
+    </div>
+  `;
+
+  if (p.plan === "VVIP") {
+    alertArea.innerHTML = `
+      <button id="alertButton">
+        🚨 Alerter la famille
+      </button>
+    `;
+
+    document.getElementById("alertButton").addEventListener("click", async function () {
+      const button = this;
+
+      if (!navigator.geolocation) {
+        status.textContent =
+          "La géolocalisation n'est pas disponible sur cet appareil.";
+        return;
+      }
+
+      button.disabled = true;
+      status.textContent = "Recherche de la position du téléphone…";
+
+      navigator.geolocation.getCurrentPosition(
+        async function (position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          const mapLink =
+            `https://www.google.com/maps?q=${lat},${lon}`;
+
+          const message =
+            `Alerte MediQR — fiche de démonstration pour ${p.name}. ` +
+            `Position du téléphone ayant scanné le QR Code : ${mapLink}`;
+
+          status.textContent =
+            "Position obtenue. Choisissez comment partager le message.";
+
+          try {
+            if (navigator.share) {
+              await navigator.share({
+                title: "Alerte MediQR",
+                text: message
+              });
+            } else {
+              window.open(
+                "https://wa.me/?text=" + encodeURIComponent(message),
+                "_blank"
+              );
+            }
+
+            status.textContent =
+              "Le partage a été proposé. Vérifiez que le message a bien été envoyé.";
+          } catch (error) {
+            if (error.name !== "AbortError") {
+              status.textContent =
+                "Le partage n'a pas abouti. Vous pouvez réessayer.";
+            }
+          }
+
+          button.disabled = false;
+        },
+
+        function () {
+          status.textContent =
+            "Position indisponible. Autorisez l'accès à la localisation puis réessayez.";
+          button.disabled = false;
+        },
+
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 0
+        }
+      );
+    });
+  } else {
+    alertArea.innerHTML = `
+      <p>
+        La fonctionnalité de partage de localisation est réservée
+        à l'abonnement VVIP.
+      </p>
+    `;
+  }
+
 } else {
-profile.textContent = "Profil introuvable. Vérifiez le QR code.";
-} </script>
+  profile.textContent =
+    "Profil introuvable. Vérifiez le QR code.";
+  subscription.textContent = "";
+  alertArea.textContent = "";
+}
+</script>
 
 </body>
 </html>
-
-
-```
