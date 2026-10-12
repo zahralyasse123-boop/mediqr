@@ -82,11 +82,153 @@ footer{background:#0c2b43;color:#d5e2eb;padding:28px 6%;text-align:center;font-s
       <ul><li>Tous les services NORMAL</li><li>Un bracelet avec QR code</li><li>Rappels pour mettre à jour les informations</li></ul>
       <a class="btn" href="#contact">Choisir VIP</a>
     </article>
+    DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediQR — Vos informations médicales, accessibles en un scan</title>
+<meta name="description" content="MediQR, un projet de carte et bracelet QR pour faciliter l'accès aux informations médicales essentielles choisies par l'utilisateur.">
+<style>
+:root{--navy:#123b5d;--teal:#159b8a;--pale:#f3f8fc;--ink:#24384a;--muted:#607487;--line:#dce7ef}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+header{background:var(--navy);color:#fff;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.brand{font-size:1.65rem;font-weight:800;letter-spacing:.2px}.brand span{color:#67d7c6}
+nav{display:flex;gap:20px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.95rem}nav a:hover{text-decoration:underline}
+.hero{background:linear-gradient(135deg,#123b5d,#176b79);color:#fff;padding:76px 6% 70px;display:grid;grid-template-columns:1.35fr .65fr;gap:35px;align-items:center}
+.eyebrow{color:#8be5d7;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;font-size:.82rem}
+h1{font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.1;margin:14px 0 20px;max-width:760px}
+.hero p{font-size:1.1rem;max-width:650px;color:#e0edf4}
+.btn{display:inline-block;background:var(--teal);color:white;padding:13px 22px;border-radius:12px;text-decoration:none;font-weight:800;margin-top:12px}
+.qr-card{background:#fff;color:var(--navy);border-radius:22px;padding:28px;text-align:center;box-shadow:0 16px 40px #001b2c35}
+.qr-symbol{width:128px;height:128px;margin:0 auto 14px;border:10px solid var(--navy);border-radius:14px;display:grid;place-items:center;font-size:3rem;color:var(--teal);font-weight:bold;background:repeating-linear-gradient(45deg,#fff,#fff 7px,#eef5f8 7px,#eef5f8 14px)}
+.qr-card small{display:block;color:var(--muted)}
+section{padding:64px 6%}.section-head{text-align:center;max-width:760px;margin:0 auto 35px}.section-head h2{font-size:clamp(1.7rem,3vw,2.5rem);color:var(--navy);margin:0 0 10px}.section-head p{color:var(--muted);margin:0}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.feature{border:1px solid var(--line);border-radius:18px;padding:24px;background:#fff}.icon{font-size:2rem}.feature h3{color:var(--navy);margin:10px 0 7px}
+.how{background:var(--pale)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}.number{width:38px;height:38px;display:grid;place-items:center;background:#dff6f1;color:#08796c;border-radius:50%;font-weight:900}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}.plan{border:1px solid var(--line);border-radius:20px;padding:28px;position:relative;box-shadow:0 8px 26px #123b5d0a}.plan.popular{border:2px solid var(--teal);transform:translateY(-6px)}.badge{display:inline-block;background:#dff6f1;color:#08796c;border-radius:99px;padding:4px 10px;font-size:.78rem;font-weight:800}.plan h3{font-size:1.45rem;color:var(--navy);margin:12px 0 2px}.price{font-size:2.35rem;color:var(--navy);font-weight:900;margin:10px 0}.price small{font-size:.9rem;color:var(--muted);font-weight:600}.plan ul{padding-left:20px;min-height:155px}.plan li{margin:8px 0}.plan .btn{width:100%;text-align:center}
+.note{max-width:950px;margin:28px auto 0;background:#fff8e8;border:1px solid #f1dfae;border-radius:14px;padding:16px 18px;color:#6b5524;font-size:.92rem}
+.contact{background:var(--pale);text-align:center}.contact-box{max-width:800px;margin:auto;background:#fff;border:1px solid var(--line);padding:34px;border-radius:20px}.contact-box h2{color:var(--navy)}
+footer{background:#0c2b43;color:#d5e2eb;padding:28px 6%;text-align:center;font-size:.9rem}footer p{margin:5px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:55px}.features,.steps,.pricing{grid-template-columns:1fr}.plan.popular{transform:none}nav{gap:12px}.qr-card{max-width:340px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Medi<span>QR</span></div>
+  <nav aria-label="Navigation principale">
+    <a href="#accueil">Accueil</a><a href="#fonctionnement">Comment ça marche ?</a><a href="#abonnements">Abonnements</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+<main>
+<section class="hero" id="accueil">
+  <div>
+    <div class="eyebrow">Un projet de santé connectée</div>
+    <h1>Vos informations médicales, accessibles en un scan.</h1>
+    <p>MediQR imagine une carte et un bracelet avec QR code pour faciliter l’accès aux informations essentielles que l’utilisateur choisit de partager, ainsi qu’à ses contacts d’urgence.</p>
+    <a class="btn" href="#abonnements">Découvrir nos abonnements</a>
+  </div>
+  <div class="qr-card">
+    <div class="qr-symbol" aria-hidden="true">＋</div>
+    <strong>Une solution simple à présenter</strong>
+    <small>Carte QR • Bracelet QR • Informations choisies par l’utilisateur</small>
+  </div>
+</section>
+
+<section id="avantages">
+  <div class="section-head"><h2>Pourquoi MediQR ?</h2><p>Une idée simple pour aider à retrouver rapidement les informations utiles lorsqu’une personne ne peut pas facilement les expliquer.</p></div>
+  <div class="features">
+    <article class="feature"><div class="icon">💳</div><h3>Carte QR</h3><p>Une carte facile à garder dans un portefeuille ou un sac.</p></article>
+    <article class="feature"><div class="icon">📿</div><h3>Bracelet QR</h3><p>Une option à porter au quotidien, selon les besoins de l’utilisateur.</p></article>
+    <article class="feature"><div class="icon">📞</div><h3>Contact d’urgence</h3><p>Permet de retrouver les coordonnées d’un ou plusieurs contacts désignés.</p></article>
+  </div>
+</section>
+
+<section class="how" id="fonctionnement">
+  <div class="section-head"><h2>Comment ça marche ?</h2><p>Le principe du service en trois étapes.</p></div>
+  <div class="steps">
+    <article class="step"><div class="number">1</div><h3>Créer son profil</h3><p>L’utilisateur choisit les informations qu’il souhaite renseigner et partager.</p></article>
+    <article class="step"><div class="number">2</div><h3>Associer le QR code</h3><p>Le QR code renvoie vers une page dédiée, avec des réglages adaptés à la confidentialité des données.</p></article>
+    <article class="step"><div class="number">3</div><h3>Scanner si nécessaire</h3><p>Un téléphone compatible peut ouvrir la page pour consulter les informations autorisées.</p></article>
+  </div>
+</section>
+
+<section id="abonnements">
+  <div class="section-head"><h2>Nos abonnements</h2><p>Tarifs annuels proposés à titre indicatif pour le projet scolaire.</p></div>
+  <div class="pricing">
+    <article class="plan">
+      <span class="badge">Essentiel</span><h3>NORMAL</h3><div class="price">99 DH <small>/ an</small></div>
+      <ul><li>Une carte QR code</li><li>Informations médicales essentielles choisies par l’utilisateur</li><li>Un contact d’urgence</li></ul>
+      <a class="btn" href="#contact">Choisir NORMAL</a>
+    </article>
+    <article class="plan popular">
+      <span class="badge">Le plus complet</span><h3>VIP</h3><div class="price">199 DH <small>/ an</small></div>
+      <ul><li>Tous les services NORMAL</li><li>Un bracelet avec QR code</li><li>Rappels pour mettre à jour les informations</li></ul>
+      <a class="btn" href="#contact">Choisir VIP</a>
+    </article>
     <article class="plan">
       <span class="badge">Assistance</span><h3>VVIP</h3><div class="price">299 DH <small>/ an</small></div>
       <ul><li>Tous les services VIP</li><li>Plusieurs contacts d’urgence</li><li>Assistance technique prioritaire</li></ul>
       <a class="btn" href="#contact">Choisir VVIP</a>
     </article>
+  </div>
+  <div class="note"><strong>À savoir :</strong> ce site est un prototype scolaire. Les prix et services sont fictifs et ne correspondent pas à une offre commerciale active. Les informations médicales essentielles doivent rester accessibles dans toutes les formules. MediQR ne remplace ni un professionnel de santé ni les services d’urgence.</div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-box">
+    <h2>Contactez MediQR</h2>
+    <p>Vous souhaitez en savoir plus sur le projet ou poser une question sur les abonnements ?</p>
+    <p><strong>Projet pédagogique — coordonnées à ajouter</strong></p>
+    <p>Pour cette démonstration, aucun paiement ni aucune inscription réelle ne sont disponibles.</p>
+  </div>
+</section>
+<section id="demo-qr" style="background:#f3f8fc;padding:50px 6%;text-align:center;">
+  <div class="section-head">
+    <h2>Démonstration : scannez un QR Code</h2>
+    <p>Scannez un code pour découvrir un profil fictif.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:900px;margin:auto;">
+
+```
+<article style="background:white;padding:24px;border-radius:18px;border:1px solid #dce7ef;">
+  <h3>Sara</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fzahralyasse123-boop.github.io%2Fmediqr%2Fpatient.html%3Fid%3D1" alt="QR Code Sara" width="180" height="180">
+  <p>Profil fictif de Sara</p>
+  <a href="patient.html?id=1" class="btn">Voir le profil</a>
+</article>
+
+<article style="background:white;padding:24px;border-radius:18px;border:1px solid #dce7ef;">
+  <h3>Adam</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fzahralyasse123-boop.github.io%2Fmediqr%2Fpatient.html%3Fid%3D2" alt="QR Code Adam" width="180" height="180">
+  <p>Profil fictif d'Adam</p>
+  <a href="patient.html?id=2" class="btn">Voir le profil</a>
+</article>
+
+<article style="background:white;padding:24px;border-radius:18px;border:1px solid #dce7ef;">
+  <h3>Lina</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fzahralyasse123-boop.github.io%2Fmediqr%2Fpatient.html%3Fid%3D3" alt="QR Code Lina" width="180" height="180">
+  <p>Profil fictif de Lina</p>
+  <a href="patient.html?id=3" class="btn">Voir le profil</a>
+</article>
+```
+
+  </div>
+
+  <p style="margin-top:25px;color:#607487;font-size:14px;">
+    Prototype scolaire uniquement : toutes les données sont fictives.
+  </p>
+</section>
+
+</main>
+<footer>
+  <p><strong>MediQR</strong> — Vos informations médicales, accessibles en un scan.</p>
+  <p>Prototype scolaire • Données fictives uniquement • Version de démonstration</p>
+</footer>
+</body>
+</html>
+
   </div>
   <div class="note"><strong>À savoir :</strong> ce site est un prototype scolaire. Les prix et services sont fictifs et ne correspondent pas à une offre commerciale active. Les informations médicales essentielles doivent rester accessibles dans toutes les formules. MediQR ne remplace ni un professionnel de santé ni les services d’urgence.</div>
 </section>
