@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +14,6 @@ body {
   padding: 20px;
   color: #243746;
 }
-
 .card {
   max-width: 500px;
   margin: 30px auto;
@@ -22,28 +22,23 @@ body {
   border-radius: 18px;
   box-shadow: 0 4px 18px #00000012;
 }
-
 h1 {
   text-align: center;
   color: #087f8c;
 }
-
 .subtitle {
   text-align: center;
   color: #667788;
 }
-
 .item {
   padding: 13px 0;
   border-bottom: 1px solid #e5eeee;
 }
-
 .label {
   font-weight: bold;
   display: block;
   margin-bottom: 5px;
 }
-
 .notice {
   background: #fff4d6;
   padding: 12px;
@@ -51,7 +46,6 @@ h1 {
   font-size: 13px;
   margin-top: 20px;
 }
-
 .vip {
   background: #f0e8ff;
   color: #6332a0;
@@ -61,7 +55,29 @@ h1 {
   font-weight: bold;
   margin: 15px 0;
 }
-
+.first-aid {
+  background: #e8f7f0;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 20px;
+  border-left: 5px solid #16845b;
+}
+.first-aid h2 {
+  color: #16845b;
+  font-size: 19px;
+  margin-top: 0;
+}
+.first-aid li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.emergency {
+  background: #fff0f0;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 15px;
+  line-height: 1.5;
+}
 button {
   width: 100%;
   padding: 15px;
@@ -74,25 +90,21 @@ button {
   cursor: pointer;
   margin-top: 15px;
 }
-
 button:disabled {
   opacity: 0.6;
   cursor: wait;
 }
-
 #status {
   font-size: 14px;
   margin-top: 12px;
   overflow-wrap: anywhere;
 }
-
 footer {
   text-align: center;
   margin-top: 20px;
   color: #667788;
   font-size: 12px;
 }
-
 a {
   color: #087f8c;
 }
@@ -100,7 +112,6 @@ a {
 </head>
 
 <body>
-
 <main class="card">
 
 <h1>💚 MediQR</h1>
@@ -108,16 +119,17 @@ a {
 
 <div id="profile"></div>
 <div id="subscription"></div>
+<div id="firstAid"></div>
 <div id="alertArea"></div>
-<p id="status" role="status"></p>
+<p id="status" role="status" aria-live="polite"></p>
 
 <div class="notice">
 <strong>Important :</strong> projet scolaire avec des données fictives.
-Cette fiche ne doit pas être utilisée en situation d'urgence réelle.
+Les informations affichées ne remplacent pas les conseils d'un professionnel de santé.
+En cas d'urgence, contactez les services d'urgence locaux.
 </div>
 
 <p><a href="./index.html">← Retour au site MediQR</a></p>
-
 <footer>MediQR — Prototype scolaire</footer>
 
 </main>
@@ -128,27 +140,48 @@ const patients = {
     name: "Sara Exemple",
     blood: "Non renseigné",
     allergies: "Non renseignées",
-    info: "Aucune donnée médicale réelle.",
+    info: "Exemple fictif : asthme",
     contact: "Contact fictif",
-    plan: "VVIP"
+    plan: "VVIP",
+    condition: "asthme",
+    firstAid: [
+      "Aidez la personne à s'asseoir dans une position confortable et restez avec elle.",
+      "Aidez-la à utiliser son inhalateur de secours prescrit, si elle en possède un, en suivant ses consignes médicales.",
+      "Si la respiration devient très difficile, si elle ne peut pas parler normalement, si ses lèvres deviennent bleutées ou si son état s'aggrave, appelez immédiatement les secours.",
+      "Ne donnez pas de médicament qui ne lui a pas été prescrit."
+    ]
   },
 
   "2": {
     name: "Adam Démo",
     blood: "O+ (exemple fictif)",
     allergies: "Exemple fictif : arachides",
-    info: "Exemple scolaire uniquement.",
+    info: "Exemple scolaire : diabète",
     contact: "Non renseigné",
-    plan: "NORMAL"
+    plan: "NORMAL",
+    condition: "diabète",
+    firstAid: [
+      "Si la personne est consciente et peut avaler sans difficulté, et qu'une hypoglycémie est suspectée, suivez son plan médical. Si elle peut mesurer sa glycémie, aidez-la à le faire.",
+      "Si une hypoglycémie est confirmée ou fortement suspectée chez une personne consciente capable d'avaler, donnez une source de sucre rapide selon son plan de soins.",
+      "Ne donnez jamais de nourriture, de boisson ou de sucre à une personne inconsciente, très somnolente ou incapable d'avaler.",
+      "En cas de perte de connaissance, de convulsions ou de confusion importante, appelez les secours. Si elle est inconsciente mais respire normalement, placez-la en position latérale de sécurité, sauf suspicion de traumatisme empêchant de la déplacer, et surveillez sa respiration."
+    ]
   },
 
   "3": {
     name: "Lina Test",
     blood: "A+ (exemple fictif)",
     allergies: "Exemple fictif : pollen",
-    info: "Exemple scolaire uniquement.",
+    info: "Exemple scolaire : allergie sévère",
     contact: "Non renseigné",
-    plan: "VIP"
+    plan: "VIP",
+    condition: "allergie sévère",
+    firstAid: [
+      "Une réaction allergique sévère peut être une urgence vitale. Appelez immédiatement les secours si la personne a des difficultés respiratoires, un gonflement de la langue ou de la gorge, ou un malaise important.",
+      "Si un auto-injecteur d'adrénaline lui a été prescrit, aidez-la à l'utiliser immédiatement conformément à ses instructions.",
+      "Si la respiration est difficile, laissez-la dans la position où elle respire le mieux. Si elle se sent faible ou étourdie, allongez-la si cela ne gêne pas sa respiration.",
+      "Ne la laissez pas seule. Si elle perd connaissance, vérifiez sa respiration et suivez les instructions des secours."
+    ]
   }
 };
 
@@ -158,6 +191,7 @@ const p = patients[id];
 
 const profile = document.getElementById("profile");
 const subscription = document.getElementById("subscription");
+const firstAid = document.getElementById("firstAid");
 const alertArea = document.getElementById("alertArea");
 const status = document.getElementById("status");
 
@@ -167,22 +201,18 @@ if (p) {
       <span class="label">👤 Nom du patient</span>
       ${p.name}
     </div>
-
     <div class="item">
       <span class="label">🩸 Groupe sanguin</span>
       ${p.blood}
     </div>
-
     <div class="item">
       <span class="label">⚠️ Allergies</span>
       ${p.allergies}
     </div>
-
     <div class="item">
       <span class="label">💊 Informations médicales</span>
       ${p.info}
     </div>
-
     <div class="item">
       <span class="label">📞 Contact d'urgence</span>
       ${p.contact}
@@ -196,11 +226,23 @@ if (p) {
     </div>
   `;
 
+  firstAid.innerHTML = `
+    <section class="first-aid">
+      <h2>🩺 Premiers secours — ${p.condition}</h2>
+      <p>Informations générales de démonstration :</p>
+      <ul>
+        ${p.firstAid.map(step => `<li>${step}</li>`).join("")}
+      </ul>
+      <div class="emergency">
+        <strong>🚨 En cas de danger immédiat :</strong>
+        appelez les services d'urgence locaux. Ne retardez pas l'appel pour consulter cette fiche.
+      </div>
+    </section>
+  `;
+
   if (p.plan === "VVIP") {
     alertArea.innerHTML = `
-      <button id="alertButton">
-        🚨 Alerter la famille
-      </button>
+      <button id="alertButton">🚨 Partager la position du téléphone</button>
     `;
 
     document.getElementById("alertButton").addEventListener("click", async function () {
@@ -219,12 +261,10 @@ if (p) {
         async function (position) {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
-
-          const mapLink =
-            `https://www.google.com/maps?q=${lat},${lon}`;
+          const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
 
           const message =
-            `Alerte MediQR — fiche de démonstration pour ${p.name}. ` +
+            `Alerte MediQR — démonstration scolaire pour ${p.name}. ` +
             `Position du téléphone ayant scanné le QR Code : ${mapLink}`;
 
           status.textContent =
@@ -254,13 +294,11 @@ if (p) {
 
           button.disabled = false;
         },
-
         function () {
           status.textContent =
             "Position indisponible. Autorisez l'accès à la localisation puis réessayez.";
           button.disabled = false;
         },
-
         {
           enableHighAccuracy: true,
           timeout: 15000,
@@ -271,19 +309,19 @@ if (p) {
   } else {
     alertArea.innerHTML = `
       <p>
-        La fonctionnalité de partage de localisation est réservée
-        à l'abonnement VVIP.
+        📍 Le partage de localisation est réservé à l'abonnement VVIP.
       </p>
     `;
   }
 
 } else {
-  profile.textContent =
-    "Profil introuvable. Vérifiez le QR code.";
+  profile.textContent = "Profil introuvable. Vérifiez le QR code.";
   subscription.textContent = "";
+  firstAid.textContent = "";
   alertArea.textContent = "";
 }
 </script>
 
 </body>
 </html>
+```
